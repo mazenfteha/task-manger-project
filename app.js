@@ -27,7 +27,7 @@ app.patch('/app/v1/tasks/:id') => upbadte task
 app.delete('/app/v1/tasks/:id') => delete task
 */
 
-const port = 8081 ;
+const port = process.env.PORT || 8081 ;
 
 
 const start =async ()=>{
