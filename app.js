@@ -3,17 +3,26 @@ const app =express();
 const tasks =require('./routes/tasks')
 const connecDB = require('./db/connect')
 require('dotenv').config()
+const notFound =require('./middleware/not-found')
 
 
 //middleware
+app.use(express.static('./public'))
 app.use(express.json())
 
 //router
-app.get('/hello', (req,res)=>{
-    res.send("Task Manger App")
-})
 
 app.use('/api/v1/tasks',tasks)
+
+app.use(notFound)
+
+/*  REAT API :
+app.get('/app/v1/tasks')   => get all tasks
+app.post('/app/v1/tasks')  => create a new task
+app.get('/app/v1/tasks/:id') => get single task
+app.patch('/app/v1/tasks/:id') => upbadte task
+app.delete('/app/v1/tasks/:id') => delete task
+*/
 
 const port = 8081 ;
 
