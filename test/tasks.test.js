@@ -1,7 +1,7 @@
 const request = require('supertest');
 
-const app = require('../app');
-const Task = require('../models/task');
+const app = require('../src/app');
+const Task = require('../src/models/task');
 const { connectTestDB, disconnectTestDB } = require('../db/testDB')
 
 beforeAll(async () => {
