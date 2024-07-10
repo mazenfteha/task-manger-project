@@ -2,7 +2,7 @@ const express =require('express');
 const app =express();
 const tasks =require('./routes/tasks')
 const connecDB = require('./db/connect')
-require('dotenv').config()
+require('dotenv-flow').config()
 const notFound =require('./middleware/not-found')
 const errorHandlerMiddleware =require('./middleware/error-handler')
 
@@ -41,3 +41,5 @@ const start =async ()=>{
 
 
 start()
+
+module.exports = app;

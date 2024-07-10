@@ -6,7 +6,7 @@ const {
     getTask,
     updateTask,
     deleteTask,
-} =require('../controllers/tasks')
+} =require('../controllers/tasksControllers')
 
 router.route('/').get(getAllTasks).post(createTask)
 router.route('/:id').get(getTask).patch(updateTask).delete(deleteTask)
