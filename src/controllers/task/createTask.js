@@ -1,9 +1,11 @@
 const Task = require('../../models/task')
-const asyncWrapper = require('../../middleware/async')
+const asyncHandler = require('express-async-handler')
 
-const createTask = asyncWrapper(async (req, res) => {
-    const task = await Task.create(req.body)
-    res.status(201).json({ task })
+
+const createTask = asyncHandler(async (req, res) => {
+    const { name } = req.body
+    const task = await Task.create({name : name})
+    res.status(201).json({ success: true, data: task})
 })
 
 module.exports = {

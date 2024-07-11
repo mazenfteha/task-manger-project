@@ -1,15 +1,21 @@
 const Task = require('../../models/task')
-const asyncWrapper = require('../../middleware/async')
-
-const getSingleTask = asyncWrapper(async (req, res, next) => {
+const asyncHandler = require('express-async-handler')
+const APIError = require('../../utils/APIError')
+const getSingleTask = asyncHandler(async (req, res, next) => {
 
     const { id: taskID } = req.params
-    const task = await Task.findOne({ _id: taskID })
 
-    if (!task) {
-            return res.status(404).json({ msg: `No task with id ${taskID}` })
+    if (!/^[0-9a-fA-F]{24}$/.test(taskID)) {
+        return next(new APIError(`Invalid task ID format: ${taskID}`, 400));
     }
-    res.status(200).json({ task })
+
+        const task = await Task.findById(taskID);
+
+        if (!task) {
+            return next(new APIError(`Task not found with ID: ${taskID}`, 404));
+        }
+
+        res.status(200).json({ success: true, data: task });
 })
 
 module.exports = {

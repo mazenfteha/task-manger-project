@@ -1,7 +1,7 @@
 const Task = require('../../models/task')
-const asyncWrapper = require('../../middleware/async')
+const asyncHandler = require('express-async-handler')
 
-const deleteTask = asyncWrapper(async (req, res) => {
+const deleteTask = asyncHandler(async (req, res) => {
 
     const { id: taskID } = req.params
     const task = await Task.findByIdAndDelete({ _id: taskID })

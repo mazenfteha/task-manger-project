@@ -8,15 +8,20 @@ const {
     deleteTask
     } = require('../controllers/task/index')
 
+const {
+    createTaskValidator ,
+    getTaskValidator,
+    getAllTaskValidator,
+    updateTaskValidator,
+    deleteTaskValidator
+    } = require('../utils/validation/task.validator')
 
-router.route('/')
-    .get(getAllTasks)
-    .post(createTask);
+router.post('/',createTaskValidator ,createTask)
+router.get('/', getAllTaskValidator,getAllTasks)
 
-router.route('/:id')
-    .get(getSingleTask)
-    .patch(updateTask)
-    .delete(deleteTask);
 
+router.get('/get-single-task/:id',getTaskValidator ,getSingleTask)
+router.patch('/update-task/:id',updateTaskValidator ,updateTask)
+router.delete('/delete-task/:id', deleteTaskValidator,deleteTask)
 
 module.exports =router 

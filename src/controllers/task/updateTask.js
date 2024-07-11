@@ -1,7 +1,7 @@
 const Task = require('../../models/task')
-const asyncWrapper = require('../../middleware/async')
+const asyncHandler = require('express-async-handler')
 
-const updateTask = asyncWrapper(async (req, res) => {
+const updateTask = asyncHandler(async (req, res) => {
 
     const { id: taskID } = req.params
 
