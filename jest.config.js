@@ -1,4 +1,5 @@
 module.exports = {
-    testEnvironment: 'node', // Use 'node' environment for testing
-    verbose: true, // Display individual test results with additional info
+    testEnvironment: 'node', 
+    setupFilesAfterEnv: ['<rootDir>/test/bootstrap.js'],
+    verbose: true, 
 };
